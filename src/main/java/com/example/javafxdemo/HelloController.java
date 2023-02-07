@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class HelloController {
 
-    Stage mainStage;
+    private Stage mainStage;
 
     @FXML
     private CheckBox ham;
@@ -37,38 +37,35 @@ public class HelloController {
     private TextArea sandwich;
 
     public void setMainStage(Stage stage) {
-        mainStage = stage;
+        this.mainStage = stage;
     }
 
     @FXML
     private void makeSandwich() {
-        // get meats
-        String meats="";
-        int count=0;
+        StringBuilder meats = new StringBuilder();
+        int count = 0;
         if (ham.isSelected()) {
-            meats += "Ham";
+            meats.append("Ham");
             count++;
         }
         if (turkey.isSelected()) {
             if (count != 0) {
-                meats += ", Turkey";
+                meats.append(", Turkey");
             } else {
-                meats += "Turkey";
+                meats.append("Turkey");
             }
             count++;
         }
         if (roastBeef.isSelected()) {
             if (count != 0) {
-                meats += ", Roast Beef";
+                meats.append(", Roast Beef");
             } else {
-                meats += "Roast Beef";
+                meats.append("Roast Beef");
             }
         }
-        //System.out.println("Meat: " + meats);
 
-        // get the cheese
         String cheese = cheeseCombo.getSelectionModel().getSelectedItem();
-        if (cheese == null) { // nothing selected
+        if (cheese == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(mainStage);
             alert.setTitle("Select Cheese");
@@ -77,32 +74,28 @@ public class HelloController {
             alert.showAndWait();
             return;
         }
-        //System.out.println("Cheese: " + cheese);
 
-        // get veggies
-        String veggies="";
-        count=0;
+        StringBuilder veggies = new StringBuilder();
+        count = 0;
         if (lettuce.isSelected()) {
-            veggies += "Lettuce";
+            veggies.append("Lettuce");
             count++;
         }
         if (tomato.isSelected()) {
             if (count != 0) {
-                veggies += ", Tomato";
+                veggies.append(", Tomato");
             } else {
-                veggies += "Tomato";
+                veggies.append("Tomato");
             }
             count++;
         }
         if (olives.isSelected()) {
             if (count != 0) {
-                veggies += ", Olives";
+                veggies.append(", Olives");
             } else {
-                veggies += "Olives";
+                veggies.append("Olives");
             }
         }
         sandwich.setText("Meat: " + meats + "\nCheese: " + cheese + "\nVeggies: " + veggies);
-
     }
-
 }

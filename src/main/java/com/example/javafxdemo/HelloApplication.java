@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class HelloApplication extends Application {
 
-    Stage mainStage;
+    private Stage mainStage;
 
     public void start(Stage stage) {
         mainStage = stage;
@@ -27,12 +27,9 @@ public class HelloApplication extends Application {
             mainStage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error while loading FXML: " + e.getMessage());
         }
-
     }
-
-
 
     public static void main(String[] args) {
         launch(args);
